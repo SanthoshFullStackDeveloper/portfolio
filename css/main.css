@@ -3441,7 +3441,7 @@ footer a:hover, footer a:focus {
 .go-top {
     position: fixed;
     bottom: 0;
-    right: 0;
+    left: 0;
     z-index: 600;
     display: none;
 }
