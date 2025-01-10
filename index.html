@@ -646,11 +646,12 @@ s0.parentNode.insertBefore(s1,s0);
             };
 
             // Check if required fields are filled
-            if (!params.to_name || !params.from_email || !params.message || !params.subject) {
-                submitLoader.style.display = "none"; // Hide loader
-                contactWarning.style.display = "block"; // Show warning
-                return false;
-            }
+           if (!params.to_name || !params.from_email || !params.message || !params.subject) {
+    submitLoader.style.display = "none"; // Hide loader
+    contactWarning.style.display = "block"; // Show warning
+    return false;
+}
+
 
             // Call the EmailJS API
             emailjs.send("service_0cld3zb", "template_lg53zvb", params)
