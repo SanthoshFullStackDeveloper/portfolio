@@ -249,7 +249,7 @@ s0.parentNode.insertBefore(s1,s0);
         </div> <!-- end about-content buttons -->
      </section>
 
-     <section id="works" class="s-about target-section">
+     <section id="works" class="s-about target-section"> 
         <div class="row narrow section-intro has-bottom-sep">
             <div class="col-full">
                 <h3>Work & Experience</h3>
@@ -582,84 +582,94 @@ s0.parentNode.insertBefore(s1,s0);
 
         <div class="row contact__main">
             <div class="col-eight tab-full contact__form">
-                <form name="contactForm" id="contactForm">
-                    <fieldset>
-                        <div class="form-field">
-                            <input name="contactName" type="text" id="contactName" placeholder="Name" minlength="2" required aria-required="true" class="full-width" required>
-                        </div>
-                        <div class="form-field">
-                            <input name="contactEmail" type="email" id="contactEmail" placeholder="Email" required aria-required="true" class="full-width" required>
-                        </div>
-                        <div class="form-field">
-                            <input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" class="full-width" required>
-                        </div>
-                        <div class="form-field">
-                            <textarea name="contactMessage" id="contactMessage" placeholder="Message" rows="10" cols="50" required aria-required="true" class="full-width"></textarea>
-                        </div>
-                        <div class="form-field">
-                            <button type="button" class="full-width btn--primary" id="submitButton" onclick="sendMail()">Submit</button>
-                            <div class="submit-loader" id="submitLoader" style="display: none;">
-                                <div class="text-loader">Sending...</div>
-                                <div class="s-loader">
-                                    <div class="bounce1"></div>
-                                    <div class="bounce2"></div>
-                                    <div class="bounce3"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-                
-                <!-- contact-warning -->
-                <div class="message-warning" id="contactWarning" style="display: none;">
-                    Something went wrong. Please try again.
-                </div>
-                
-                <!-- contact-success -->
-                <div class="message-success" id="contactSuccess" style="display: none;">
-                    Your message was sent, thank you!<br>
-                </div>
-                
-                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-                <script>
-                    // Initialize EmailJS with your public key
-                    emailjs.init("vDUU5vHRSnuv2-m7Q"); // Replace with your actual public key
-                
-                    // Function to send email
-                    function sendMail() {
-                        const submitLoader = document.getElementById("submitLoader");
-                        const contactWarning = document.getElementById("contactWarning");
-                        const contactSuccess = document.getElementById("contactSuccess");
-                
-                        submitLoader.style.display = "block"; // Show the loader
-                        contactWarning.style.display = "none"; // Hide warning
-                        contactSuccess.style.display = "none"; // Hide success
-                
-                        // Get form data
-                        const params = {
-                            to_name: document.getElementById("contactName").value,
-                            from_email: document.getElementById("contactEmail").value,
-                            subject: document.getElementById("contactSubject").value,
-                            message: document.getElementById("contactMessage").value,
-                        };
-                
-                        // Call the EmailJS API
-                        emailjs.send("service_0cld3zb", "template_lg53zvb", params)
-                            .then(function (response) {
-                                console.log("Success!", response.status, response.text);
-                                submitLoader.style.display = "none"; // Hide the loader
-                                contactSuccess.style.display = "block"; // Show success message
-                                document.getElementById("contactForm").reset(); // Reset the form
-                            })
-                            .catch(function (error) {
-                                console.error("Failed:", error);
-                                submitLoader.style.display = "none"; // Hide the loader
-                                contactWarning.style.display = "block"; // Show warning message
-                            });
-                    }
-                </script>
-                
+    <form name="contactForm" id="contactForm" onsubmit="return sendMail(event)">
+        <fieldset>
+            <div class="form-field">
+                <input name="contactName" type="text" id="contactName" placeholder="Name" minlength="2" required aria-required="true" class="full-width">
             </div>
+            <div class="form-field">
+                <input name="contactEmail" type="email" id="contactEmail" placeholder="Email" required aria-required="true" class="full-width">
+            </div>
+            <div class="form-field">
+                <input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" class="full-width">
+            </div>
+            <div class="form-field">
+                <textarea name="contactMessage" id="contactMessage" placeholder="Message" rows="10" cols="50" required aria-required="true" class="full-width"></textarea>
+            </div>
+            <div class="form-field">
+                <button type="submit" class="full-width btn--primary" id="submitButton">Submit</button>
+                <div class="submit-loader" id="submitLoader" style="display: none;">
+                    <div class="text-loader">Sending...</div>
+                    <div class="s-loader">
+                        <div class="bounce1"></div>
+                        <div class="bounce2"></div>
+                        <div class="bounce3"></div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <!-- contact-warning -->
+    <div class="message-warning" id="contactWarning" style="display: none;">
+        Something went wrong. Please try again.
+    </div>
+
+    <!-- contact-success -->
+    <div class="message-success" id="contactSuccess" style="display: none;">
+        Your message was sent, thank you!<br>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your public key
+        emailjs.init("vDUU5vHRSnuv2-m7Q"); // Replace with your actual public key
+
+        // Function to send email
+        function sendMail(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const submitLoader = document.getElementById("submitLoader");
+            const contactWarning = document.getElementById("contactWarning");
+            const contactSuccess = document.getElementById("contactSuccess");
+
+            submitLoader.style.display = "block"; // Show the loader
+            contactWarning.style.display = "none"; // Hide warning
+            contactSuccess.style.display = "none"; // Hide success
+
+            // Get form data
+            const params = {
+                to_name: document.getElementById("contactName").value,
+                from_email: document.getElementById("contactEmail").value,
+                subject: document.getElementById("contactSubject").value,
+                message: document.getElementById("contactMessage").value,
+            };
+
+            // Check if required fields are filled
+            if (!params.to_name || !params.from_email || !params.message) {
+                submitLoader.style.display = "none"; // Hide loader
+                contactWarning.style.display = "block"; // Show warning
+                return false;
+            }
+
+            // Call the EmailJS API
+            emailjs.send("service_0cld3zb", "template_lg53zvb", params)
+                .then(function (response) {
+                    console.log("Success!", response.status, response.text);
+                    submitLoader.style.display = "none"; // Hide loader
+                    contactSuccess.style.display = "block"; // Show success message
+                    document.getElementById("contactForm").reset(); // Reset the form
+                })
+                .catch(function (error) {
+                    console.error("Failed:", error);
+                    submitLoader.style.display = "none"; // Hide loader
+                    contactWarning.style.display = "block"; // Show warning message
+                });
+
+            return false; // Prevent default submission
+        }
+    </script>
+</div>
 
 
             <div class="col-four tab-full contact__infos">
