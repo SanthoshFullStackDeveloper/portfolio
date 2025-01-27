@@ -337,6 +337,13 @@ s0.parentNode.insertBefore(s1,s0);
                     </article>
                 </div>
                 
+                <!-- ScrollReveal JS -->
+                <script src="https://unpkg.com/scrollreveal"></script>
+                <script>
+                    // Initialize ScrollReveal
+                    ScrollReveal().reveal('.col-block', { delay: 200, distance: '30px', origin: 'bottom', interval: 200 });
+                </script>
+                 
                  <!-- end col-full -->
         </div> <!-- end blog-content -->
         
@@ -376,7 +383,16 @@ s0.parentNode.insertBefore(s1,s0);
                         </div>
                     </div> <!-- end timeline__block -->
                 </div>
-              
+                
+                <script>
+                    // Initialize ScrollReveal
+                    ScrollReveal().reveal('.timeline__block', { 
+                        delay: 200,
+                        distance: '30px',
+                        origin: 'bottom',
+                        interval: 400
+                    });
+                </script>
                  <!-- end timeline -->
             </div> <!-- end left -->
             
@@ -410,15 +426,7 @@ s0.parentNode.insertBefore(s1,s0);
             
                 </div> <!-- end timeline -->
             </div> <!-- end right -->
-                <script>
-                    // Initialize ScrollReveal
-                    ScrollReveal().reveal('.timeline__block', { 
-                        delay: 200,
-                        distance: '30px',
-                        origin: 'bottom',
-                        interval: 400
-                    });
-                </script>
+            
             
         </div> <!-- end about-content timeline -->
 
