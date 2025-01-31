@@ -4172,11 +4172,3 @@ article.blog-single .blog-content {
         display: none;
     }
 }
-.resume-buttons {
-    display: flex;
-    gap: 10px;  /* Adds space between buttons */
-}
-
-#download-btn, #view-btn {
-    flex: 1 1 auto;  /* Ensures buttons are of equal width */
-}  
